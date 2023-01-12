@@ -1,0 +1,9 @@
+theme = "monokai_pro"
+
+[editor]
+rulers = [80]
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
