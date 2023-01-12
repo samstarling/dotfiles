@@ -1,0 +1,9 @@
+antigen use oh-my-zsh
+
+antigen bundle git
+antigen bundle command-not-found
+antigen bundle docker
+
+antigen theme robbyrussell
+
+antigen apply
