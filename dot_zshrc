@@ -10,3 +10,5 @@ function br() {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export EDITOR="hx"
