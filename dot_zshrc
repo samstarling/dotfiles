@@ -2,13 +2,20 @@ source /opt/homebrew/share/antigen/antigen.zsh
 
 antigen init ~/.antigenrc
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-. /opt/homebrew/etc/profile.d/z.sh
+source /opt/homebrew/opt/asdf/libexec/asdf.sh
 
-function br() {
-  git checkout $(gb |column -t | fzf --no-sort --reverse --tac |awk '{print $1}')
+function fbr() {
+  local branches branch
+  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+    branch=$(echo "$branches" | fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+    git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Plugins
+source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+eval "$(zoxide init zsh)"
+eval "$(direnv hook zsh)"
 
 export EDITOR="hx"
