@@ -18,4 +18,7 @@ source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
 eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
 
+# psql
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
 export EDITOR="hx"
