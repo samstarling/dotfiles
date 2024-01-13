@@ -6,6 +6,7 @@ brew "antigen"
 brew "asdf"
 brew "chezmoi"
 brew "direnv"
+brew "fzf"
 
 # tools
 cask "kitty"
@@ -28,3 +29,4 @@ brew "libpq"
 brew "openjdk"
 brew "zoxide"
 cask "google-cloud-sdk"
+cask "microsoft-teams"
