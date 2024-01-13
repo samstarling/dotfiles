@@ -10,7 +10,7 @@
 	cb = "!f() { git checkout -b sam/$1; }; f"
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RFX
-	excludesfile = /Users/samstarling/.gitignore
+	excludesfile = ~/.gitignore
 [interactive]
 	diffFilter = diff-so-fancy --patch
 [color]
