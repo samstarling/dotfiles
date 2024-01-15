@@ -7,9 +7,13 @@ brew "asdf"
 brew "chezmoi"
 brew "direnv"
 brew "fzf"
+brew "rg"
+brew "zoxide"
+brew "jq"
 
 # tools
 cask "kitty"
+cask "1password-cli"
 
 # productivity
 cask "raycast"
@@ -21,12 +25,14 @@ cask "visual-studio-code"
 # fonts
 cask "font-input"
 
-# incident.io
+# incident.io tools
+cask "linear-linear"
+cask "notion"
+
+# incident.io devtools
 cask "docker"
 brew "docker-compose"
-brew "jq"
 brew "libpq"
 brew "openjdk"
-brew "zoxide"
 cask "google-cloud-sdk"
 cask "microsoft-teams"
