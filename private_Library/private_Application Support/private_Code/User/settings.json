@@ -1,0 +1,6 @@
+{
+    "security.workspace.trust.untrustedFiles": "open",
+    "editor.fontFamily": "Input Mono Compressed",
+    "editor.fontSize": 14,
+    "editor.fontWeight": "300"
+}
