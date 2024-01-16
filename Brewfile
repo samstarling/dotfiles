@@ -10,6 +10,8 @@ brew "fzf"
 brew "rg"
 brew "zoxide"
 brew "jq"
+brew "httpie"
+cask "ngrok"
 
 # tools
 cask "kitty"
@@ -28,6 +30,7 @@ cask "font-input"
 # incident.io tools
 cask "linear-linear"
 cask "notion"
+cask "loom"
 
 # incident.io devtools
 cask "docker"
