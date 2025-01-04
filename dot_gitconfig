@@ -3,16 +3,19 @@
 	email = 42478+samstarling@users.noreply.github.com
 [push]
 	autoSetupRemote = true
+[init]
+	defaultBranch = main
 [alias]
 	st = status
 	br = branch --sort=-committerdate
 	co = checkout
 	cb = "!f() { git checkout -b sam/$1; }; f"
+	now = commit --amend --date=now
+	rc = rebase --continue
+	yolo = push --force-with-lease
 [core]
 	pager = diff-so-fancy | less --tabs=4 -RFX
 	excludesfile = ~/.gitignore
-[interactive]
-	diffFilter = diff-so-fancy --patch
 [color]
 	ui = true
 [color "diff-highlight"]
@@ -28,3 +31,17 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+[interactive]
+    diffFilter = delta --color-only --features=interactive
+[delta]
+    features = decorations
+[delta "interactive"]
+    keep-plus-minus-markers = false
+[delta "decorations"]
+    commit-decoration-style = blue ol
+    commit-style = raw
+    file-style = omit
+    hunk-header-decoration-style = blue box
+    hunk-header-file-style = red
+    hunk-header-line-number-style = "#067a00"
+    hunk-header-style = file line-number syntax
