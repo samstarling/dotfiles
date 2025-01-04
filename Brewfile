@@ -3,7 +3,7 @@ tap "homebrew/cask-fonts"
 
 # basics
 brew "antigen"
-brew "asdf"
+brew "mise"
 brew "chezmoi"
 brew "direnv"
 brew "fzf"
