@@ -14,7 +14,7 @@
 	rc = rebase --continue
 	yolo = push --force-with-lease
 [core]
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = delta
 	excludesfile = ~/.gitignore
 [color]
 	ui = true
@@ -32,11 +32,13 @@
 	new = green bold
 	whitespace = red reverse
 [interactive]
-    diffFilter = delta --color-only --features=interactive
+	diffFilter = delta --color-only --features=interactive
 [delta]
-    features = decorations
+	features = decorations
+	line-numbers = true
+	side-by-side = true
 [delta "interactive"]
-    keep-plus-minus-markers = false
+	keep-plus-minus-markers = false
 [delta "decorations"]
     commit-decoration-style = blue ol
     commit-style = raw
