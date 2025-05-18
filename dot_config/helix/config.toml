@@ -7,3 +7,6 @@ rulers = [80]
 insert = "bar"
 normal = "block"
 select = "underline"
+
+[editor.whitespace]
+render = "all"
