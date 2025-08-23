@@ -12,9 +12,12 @@ function fbr() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Plugins
-source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
 eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
+
+# google cloud
+source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 
 # psql
 export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
