@@ -2,6 +2,9 @@
 	name = Sam Starling
 	email = 42478+samstarling@users.noreply.github.com
 	signingkey = 4B1FB6C4C2771E68
+	useConfigOnly = true
+[includeIf "gitdir:~/go/src/github.com/incident-io"]
+	path = ~/.gitconfig.incident
 [push]
 	autoSetupRemote = true
 [init]
