@@ -10,5 +10,7 @@ mise use --global chezmoi@latest
 chezmoi init --apply samstarling
 ```
 
+You then need to install Homebrew.
+
 [mise]: https://mise.jdx.dev/getting-started.html
 [chezmoi]: https://www.chezmoi.io/
