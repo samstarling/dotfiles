@@ -1,6 +1,7 @@
 [user]
 	name = Sam Starling
 	email = 42478+samstarling@users.noreply.github.com
+	signingkey = 4B1FB6C4C2771E68
 [push]
 	autoSetupRemote = true
 [init]
@@ -14,6 +15,7 @@
 	rc = rebase --continue
 	yolo = push --force-with-lease
 	nb = "!f() { git checkout -b "sam/$(date +%Y-%m)-$1"; }; f"
+	inc = "!f() { git checkout -b \"$USER/inc-$1\"; }; f"
 [core]
 	pager = delta
 	excludesfile = ~/.gitignore
@@ -53,3 +55,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
