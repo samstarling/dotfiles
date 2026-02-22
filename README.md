@@ -19,7 +19,7 @@ put all of our configuration in place:
 
 ```
 mise use --global gh@latest
-chezmoi init --apply samstarling
+chezmoi init --apply samstarling --ssh
 ```
 
 For now, give a dummy value for the GPG signing key.
@@ -51,6 +51,12 @@ gpg --full-generate-key
 
 Then, take the key ID (after the slash in the `sec` line), update the value in
 `~/.config/chezmoi/chezmoi.toml`, and run `chezmoi apply ~/.gitconfig`.
+
+Finally, copy the key, and [add it to GitHub](https://github.com/settings/keys):
+
+```
+gpg --armor --export KEY_ID | pbcopy
+```
 
 [mise]: https://mise.jdx.dev
 [chezmoi]: https://www.chezmoi.io/
