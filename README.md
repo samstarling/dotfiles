@@ -42,15 +42,27 @@ zb bundle --file ~/.local/share/chezmoi/Brewfile
 
 ## GPG
 
-Generate a GPG key for signing `git` commits:
+Generate a GPG key for signing `git` commits. Choose ECC with ED25519:
 
 ```
 gpgconf --kill gpg-agent
 gpg --full-generate-key
 ```
 
-Then, take the key ID (after the slash in the `sec` line), update the value in
-`~/.config/chezmoi/chezmoi.toml`, and run `chezmoi apply ~/.gitconfig`.
+Take the key ID (after the slash in the `sec` line), and add the GitHub
+no-reply email as a UID:
+
+```
+gpg --edit-key KEY_ID
+adduid
+save
+```
+
+Update the signing key in `~/.config/chezmoi/chezmoi.toml` and apply it:
+
+```
+chezmoi apply ~/.gitconfig
+```
 
 Finally, copy the key, and [add it to GitHub](https://github.com/settings/keys):
 
