@@ -2,9 +2,17 @@
 
 Configuration for my computer, managed by [mise], [chezmoi] and [zerobrew].
 
+## Xcode
+
+First, you'll need Xcode command line tools:
+
+```sh
+xcode-select --install
+```
+
 ## GitHub
 
-The first goal is to be able to talk to GitHub. We'll use `mise` for this:
+Next, we need to be able to talk to GitHub. We'll use `mise` for this:
 
 ```sh
 curl https://mise.run | sh
@@ -17,7 +25,7 @@ gh auth login
 Now we can access this `dotfiles` repo, and initialize `chezmoi`. This will
 put all of our configuration in place:
 
-```
+```sh
 mise use --global gh@latest
 chezmoi init --apply samstarling --ssh
 ```
@@ -29,7 +37,7 @@ For now, give a dummy value for the GPG signing key.
 We already installed `mise`, and `chezmoi` gave us a `~/.mise.toml`. Install
 those dependencies by running:
 
-```
+```sh
 mise install
 ```
 
@@ -44,7 +52,7 @@ zb bundle --file ~/.local/share/chezmoi/Brewfile
 
 Generate a GPG key for signing `git` commits. Choose ECC with ED25519:
 
-```
+```sh
 gpgconf --kill gpg-agent
 gpg --full-generate-key
 ```
@@ -52,7 +60,7 @@ gpg --full-generate-key
 Take the key ID (after the slash in the `sec` line), and add the GitHub
 no-reply email as a UID:
 
-```
+```sh
 gpg --edit-key KEY_ID
 adduid
 save
@@ -60,13 +68,13 @@ save
 
 Update the signing key in `~/.config/chezmoi/chezmoi.toml` and apply it:
 
-```
+```sh
 chezmoi apply ~/.gitconfig
 ```
 
 Finally, copy the key, and [add it to GitHub](https://github.com/settings/keys):
 
-```
+```sh
 gpg --armor --export KEY_ID | pbcopy
 ```
 

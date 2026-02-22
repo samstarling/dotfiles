@@ -5,3 +5,4 @@ if status is-interactive
 end
 
 set fish_greeting
+set -U hydro_symbol_prompt "󰺊 e "
