@@ -1,0 +1,20 @@
+{
+  "buffer_line_height": "comfortable",
+  "buffer_font_weight": 400.0,
+  "buffer_font_family": "Iosevka",
+  "terminal": {
+    "shell": {
+      "program": "/opt/zerobrew/bin/fish",
+    },
+  },
+  "ui_font_family": ".ZedSans",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "One Dark",
+  },
+  "show_wrap_guides": true,
+  "wrap_guides": [80, 120],
+}

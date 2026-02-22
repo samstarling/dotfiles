@@ -1,0 +1,8 @@
+[tools]
+chezmoi = "latest"
+delta = "latest"
+fzf = "latest"
+gh = "latest"
+jq = "latest"
+ripgrep = "latest"
+zoxide = "latest"
