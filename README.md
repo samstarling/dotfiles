@@ -1,6 +1,6 @@
 # dotfiles
 
-Configuration for my computer, managed by [mise] and [chezmoi].
+Configuration for my computer, managed by [mise], [chezmoi] and [zerobrew].
 
 ## GitHub
 
