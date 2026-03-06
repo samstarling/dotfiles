@@ -1,6 +1,6 @@
 # dotfiles
 
-Configuration for my computer, managed by [mise], [chezmoi] and [zerobrew].
+Configuration for my computer, managed by [mise], [chezmoi] and [homebrew].
 
 ## Xcode
 
@@ -41,11 +41,18 @@ those dependencies by running:
 mise install
 ```
 
-Then, install [zerobrew] and install our other dependencies:
+Then, install [homebrew] and install our other dependencies:
 
 ```sh
-curl -fsSL https://zerobrew.rs/install | bash
-zb bundle --file ~/.local/share/chezmoi/Brewfile
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew bundle --file ~/.local/share/chezmoi/Brewfile
+```
+
+Set fish as the default shell:
+
+```sh
+echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
+chsh -s /opt/homebrew/bin/fish
 ```
 
 ## GPG
@@ -80,4 +87,4 @@ gpg --armor --export KEY_ID | pbcopy
 
 [mise]: https://mise.jdx.dev
 [chezmoi]: https://www.chezmoi.io/
-[zerobrew]: https://github.com/lucasgelfond/zerobrew
+[homebrew]: https://brew.sh

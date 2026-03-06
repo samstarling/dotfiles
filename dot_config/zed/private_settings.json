@@ -4,8 +4,8 @@
   "buffer_font_family": "Iosevka",
   "terminal": {
     "shell": {
-      "program": "/opt/zerobrew/bin/fish",
-    },
+      "program": "/opt/homebrew/bin/fish"
+    }
   },
   "ui_font_family": ".ZedSans",
   "ui_font_size": 16,
@@ -13,8 +13,8 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "One Dark",
+    "dark": "One Dark"
   },
   "show_wrap_guides": true,
-  "wrap_guides": [80, 120],
+  "wrap_guides": [80, 120]
 }
