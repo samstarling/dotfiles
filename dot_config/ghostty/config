@@ -1,7 +1,8 @@
 font-family = "Iosevka Term"
-font-style = "Light"
-font-style-bold = "Heavy"
+font-style = "Regular"
+font-style-bold = "Regular"
 font-size = 15
 window-padding-x = 20
 window-padding-y = 20
 keybind = shift+enter=text:\n
+bold-is-bright = true
