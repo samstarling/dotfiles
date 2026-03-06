@@ -19,5 +19,6 @@ function fish_greeting
         set batt_str "$batt_pct +"
     end
 
-    echo "$today  |  $ip  |  $batt_str"
+    set -l dot (set_color 808080)"·"(set_color normal)
+    echo "$today $dot $ip $dot $batt_str"
 end
