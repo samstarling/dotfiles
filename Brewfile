@@ -1,3 +1,4 @@
+brew "btop"
 brew "gnupg"
 brew "pinentry-mac"
 brew "eza"
