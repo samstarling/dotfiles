@@ -8,6 +8,11 @@ if status is-interactive
     zoxide init fish | source
 end
 
+abbr -a gs git status
+abbr -a gp git push
+abbr -a gl git pull
+abbr -a gd git diff
+
 alias ls "eza --group-directories-first --git"
 alias ll "eza --group-directories-first --git -l"
 
