@@ -26,7 +26,6 @@ Now we can access this `dotfiles` repo, and initialize `chezmoi`. This will
 put all of our configuration in place:
 
 ```sh
-mise use --global gh@latest
 chezmoi init --apply samstarling --ssh
 ```
 
