@@ -18,14 +18,13 @@ xcode-select --install
 curl https://mise.run | sh
 ```
 
-### 3. Install gh, chezmoi and fish via mise
+### 3. Install gh and chezmoi via mise
 
-All three are pinned in `dot_config/mise/config.toml`, but we need them before
-chezmoi can apply that config. Fish is required so the `run_onchange` script
-that installs fisher + hydro can run during `chezmoi apply`.
+Both are also pinned in `dot_config/mise/config.toml`, but we need them before
+chezmoi can apply that config.
 
 ```sh
-mise use --global gh@latest chezmoi@latest fish@latest
+mise use --global gh@latest chezmoi@latest
 ```
 
 ### 4. Authenticate with GitHub
@@ -37,46 +36,53 @@ Pick SSH so we can clone (and push to) this dotfiles repo over SSH.
 gh auth login
 ```
 
-### 5. Apply chezmoi
+### 5. Clone the dotfiles
+
+`init` without `--apply` clones the repo to `~/.local/share/chezmoi` but
+doesn't run any scripts yet — we need brew (and fish) installed before that.
 
 ```sh
-chezmoi init --apply samstarling --ssh
+chezmoi init samstarling --ssh
 ```
 
 When prompted for a GPG signing key, enter anything — we'll regenerate it in
-step 9 and update the value.
+step 10 and update the value.
 
-### 6. Install remaining mise tools
+### 6. Install homebrew and the Brewfile
 
-The applied `~/.config/mise/config.toml` pins everything else (delta, fzf, jq,
-ripgrep, zoxide, fd, etc).
-
-```sh
-mise install
-```
-
-### 7. Install homebrew and the Brewfile
+Provides `fish`, `gnupg`, `pinentry-mac` — needed for the next step.
 
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew bundle --file ~/.local/share/chezmoi/Brewfile
 ```
 
-The chezmoi `run_onchange_after_brewfile.sh` script will keep this in sync on
-future applies.
+### 7. Apply chezmoi
 
-### 8. Set fish as the default shell
-
-Fish is installed via mise; we point `chsh` at the mise shim (stable across
-fish version upgrades).
+Now that fish is installed, the `run_onchange` script that sets up
+fisher + hydro can run.
 
 ```sh
-FISH_SHIM="$HOME/.local/share/mise/shims/fish"
-echo "$FISH_SHIM" | sudo tee -a /etc/shells
-chsh -s "$FISH_SHIM"
+chezmoi apply
 ```
 
-### 9. Generate a GPG signing key
+### 8. Install remaining mise tools
+
+The applied `~/.config/mise/config.toml` pins everything else (bat, btop,
+delta, eza, fzf, helix, jq, ripgrep, zoxide, fd, etc).
+
+```sh
+mise install
+```
+
+### 9. Set fish as the default shell
+
+```sh
+echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
+chsh -s /opt/homebrew/bin/fish
+```
+
+### 10. Generate a GPG signing key
 
 ECC / ED25519:
 
