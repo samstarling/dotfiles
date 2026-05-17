@@ -1,11 +1,47 @@
 {
+  "prettier": {
+    "parser": "",
+  },
+  "cli_default_open_behavior": "new_window",
+  "project_panel": {
+    "dock": "left",
+  },
+  "outline_panel": {
+    "dock": "left",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "git_panel": {
+    "dock": "left",
+  },
+  "icon_theme": "Catppuccin Latte",
+  "file_finder": {
+    "include_ignored": "all",
+  },
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry",
+    },
+  },
+  "agent": {
+    "dock": "right",
+    "default_model": {
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-6-latest",
+      "enable_thinking": false,
+    },
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "format_on_save": "on",
   "buffer_line_height": "comfortable",
   "buffer_font_weight": 400.0,
   "buffer_font_family": "Iosevka",
   "terminal": {
     "shell": {
-      "program": "/opt/homebrew/bin/fish"
-    }
+      "program": "/opt/homebrew/bin/fish",
+    },
   },
   "ui_font_family": ".ZedSans",
   "ui_font_size": 16,
@@ -13,8 +49,27 @@
   "theme": {
     "mode": "system",
     "light": "One Light",
-    "dark": "One Dark"
+    "dark": "One Dark",
   },
   "show_wrap_guides": true,
-  "wrap_guides": [80, 120]
+  "wrap_guides": [80, 120],
+  "languages": {
+    "Markdown": {
+      "preferred_line_length": 80,
+      "soft_wrap": "preferred_line_length",
+    },
+    "Python": {
+      "code_actions_on_format": {
+        "source.organizeImports.ruff": true,
+      },
+      "formatter": {
+        "language_server": {
+          "name": "ruff",
+        },
+      },
+    },
+  },
+  "file_types": {
+    "HCL": ["alloy"],
+  },
 }
