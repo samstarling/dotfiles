@@ -1,0 +1,14 @@
+[tools]
+shellcheck = "latest"
+
+[tasks.lint]
+description = "Shellcheck the chezmoi scripts (renders templates first)"
+run = '''
+set -e
+fail=0
+for f in .chezmoiscripts/*.sh.tmpl; do
+    echo "==> $f"
+    chezmoi execute-template < "$f" | shellcheck - || fail=1
+done
+exit $fail
+'''
