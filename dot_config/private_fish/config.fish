@@ -1,11 +1,17 @@
 # Mise
-/Users/sam/.local/bin/mise activate fish | source
+if test -x ~/.local/bin/mise
+    ~/.local/bin/mise activate fish | source
+end
 
 # Brew
-/opt/homebrew/bin/brew shellenv fish | source
+if test -x /opt/homebrew/bin/brew
+    /opt/homebrew/bin/brew shellenv fish | source
+end
 
 if status is-interactive
-    zoxide init fish | source
+    if command -q zoxide
+        zoxide init fish | source
+    end
 end
 
 abbr -a gs git status
