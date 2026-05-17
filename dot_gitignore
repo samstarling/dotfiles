@@ -1,4 +1,15 @@
+.playwright-mcp
+.mcp.json
 .tool-versions
 .DS_Store
 .venv
 .mise.toml
+mise.local.toml
+.claude/settings.local.json
+*.tfstate
+*.tfstate.*
+.terraform
+.claude
+data/**/.evidence
+.build
+Package.resolved
