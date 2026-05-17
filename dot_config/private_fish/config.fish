@@ -24,3 +24,7 @@ set -U hydro_color_pwd 808080
 set -U hydro_color_git fab387
 set -U hydro_symbol_git_dirty " ±"
 set -U hydro_cmd_duration_threshold 9999999
+
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init2.fish 2>/dev/null || :
