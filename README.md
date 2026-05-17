@@ -2,69 +2,90 @@
 
 Configuration for my computer, managed by [mise], [chezmoi] and [homebrew].
 
-## Xcode
+## Fresh machine setup
 
-First, you'll need Xcode command line tools:
+### 1. Xcode command-line tools
+
+Provides `git`, which everything else depends on.
 
 ```sh
 xcode-select --install
 ```
 
-## GitHub
-
-Next, we need to be able to talk to GitHub. We'll use `mise` for this:
+### 2. Bootstrap mise
 
 ```sh
 curl https://mise.run | sh
-mise use --global gh@latest
+```
+
+### 3. Install gh, chezmoi and fish via mise
+
+All three are pinned in `dot_config/mise/config.toml`, but we need them before
+chezmoi can apply that config. Fish is required so the `run_onchange` script
+that installs fisher + hydro can run during `chezmoi apply`.
+
+```sh
+mise use --global gh@latest chezmoi@latest fish@latest
+```
+
+### 4. Authenticate with GitHub
+
+`gh auth login` will offer to generate an SSH key and upload it to GitHub.
+Pick SSH so we can clone (and push to) this dotfiles repo over SSH.
+
+```sh
 gh auth login
 ```
 
-## Chezmoi
-
-Now we can access this `dotfiles` repo, and initialize `chezmoi`. This will
-put all of our configuration in place:
+### 5. Apply chezmoi
 
 ```sh
-mise use --global chezmoi@latest
 chezmoi init --apply samstarling --ssh
 ```
 
-For now, give a dummy value for the GPG signing key.
+When prompted for a GPG signing key, enter anything — we'll regenerate it in
+step 9 and update the value.
 
-## Tools
+### 6. Install remaining mise tools
 
-We already installed `mise`, and `chezmoi` gave us a `~/.mise.toml`. Install
-those dependencies by running:
+The applied `~/.config/mise/config.toml` pins everything else (delta, fzf, jq,
+ripgrep, zoxide, fd, etc).
 
 ```sh
 mise install
 ```
 
-Then, install [homebrew] and install our other dependencies:
+### 7. Install homebrew and the Brewfile
 
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew bundle --file ~/.local/share/chezmoi/Brewfile
 ```
 
-Set fish as the default shell:
+The chezmoi `run_onchange_after_brewfile.sh` script will keep this in sync on
+future applies.
+
+### 8. Set fish as the default shell
+
+Fish is installed via mise; we point `chsh` at the mise shim (stable across
+fish version upgrades).
 
 ```sh
-echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
-chsh -s /opt/homebrew/bin/fish
+FISH_SHIM="$HOME/.local/share/mise/shims/fish"
+echo "$FISH_SHIM" | sudo tee -a /etc/shells
+chsh -s "$FISH_SHIM"
 ```
 
-## GPG
+### 9. Generate a GPG signing key
 
-Generate a GPG key for signing `git` commits. Choose ECC with ED25519:
+ECC / ED25519:
 
 ```sh
 gpgconf --kill gpg-agent
 gpg --full-generate-key
 ```
 
-Take the key ID (after the slash in the `sec` line), and add the GitHub
+Take the key ID (after the slash in the `sec` line) and add the GitHub
 no-reply email as a UID:
 
 ```sh
@@ -73,13 +94,14 @@ adduid
 save
 ```
 
-Update the signing key in `~/.config/chezmoi/chezmoi.toml` and apply it:
+Tell chezmoi the new key ID and re-apply the gitconfig:
 
 ```sh
+chezmoi edit-config        # update signingKey
 chezmoi apply ~/.gitconfig
 ```
 
-Finally, copy the key, and [add it to GitHub](https://github.com/settings/keys):
+Then copy the public key and [add it to GitHub](https://github.com/settings/keys):
 
 ```sh
 gpg --armor --export KEY_ID | pbcopy

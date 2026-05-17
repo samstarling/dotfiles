@@ -1,7 +1,2 @@
-brew "bat"
-brew "btop"
-brew "eza"
-brew "fish"
 brew "gnupg"
-brew "helix"
 brew "pinentry-mac"
