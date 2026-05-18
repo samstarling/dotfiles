@@ -14,14 +14,19 @@ xcode-select --install
 
 ### 2. Bootstrap mise
 
+Install the binary and activate it for the current session.
+
 ```sh
 curl https://mise.run | sh
+eval "$(~/.local/bin/mise activate zsh)"
 ```
 
-### 3. Install gh and chezmoi via mise
+We'll `chsh` to `fish` later on: this is just here for bootstrapping.
 
-Both are also pinned in `dot_config/mise/config.toml`, but we need them before
-chezmoi can apply that config.
+### 3. Install prerequisites
+
+We need `gh` and `chezmoi` so that we can fetch and apply the dotfiles from
+this repo:
 
 ```sh
 mise use --global gh@latest chezmoi@latest
@@ -39,18 +44,19 @@ gh auth login
 ### 5. Clone the dotfiles
 
 `init` without `--apply` clones the repo to `~/.local/share/chezmoi` but
-doesn't run any scripts yet — we need brew (and fish) installed before that.
+doesn't run any scripts — we need fish (from homebrew) installed first so
+the `run_onchange` fisher/hydro script can fire on the eventual `apply`.
 
 ```sh
 chezmoi init samstarling --ssh
 ```
 
-When prompted for a GPG signing key, enter anything — we'll regenerate it in
-step 10 and update the value.
+When prompted for a GPG signing key, enter anything — we'll regenerate it
+in step 10.
 
 ### 6. Install homebrew and the Brewfile
 
-Provides `fish`, `gnupg`, `pinentry-mac` — needed for the next step.
+Provides `fish`, `gnupg`, `pinentry-mac`.
 
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -58,9 +64,6 @@ brew bundle --file ~/.local/share/chezmoi/Brewfile
 ```
 
 ### 7. Apply chezmoi
-
-Now that fish is installed, the `run_onchange` script that sets up
-fisher + hydro can run.
 
 ```sh
 chezmoi apply
