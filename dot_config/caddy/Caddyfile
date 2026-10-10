@@ -1,0 +1,57 @@
+# Local HTTPS hostnames for Semaloop dev servers. Run by `brew services start
+# caddy`; restart it after editing.
+
+# The API and frontend serve their own mkcert certificates.
+(https_upstream) {
+	transport http {
+		tls_insecure_skip_verify
+	}
+}
+
+frontend.semaloop.localhost {
+	reverse_proxy https://localhost:5173 {
+		import https_upstream
+	}
+}
+
+api.semaloop.localhost {
+	reverse_proxy https://localhost:8787 {
+		import https_upstream
+	}
+}
+
+admin.semaloop.localhost {
+	reverse_proxy localhost:5174
+}
+
+storybook.semaloop.localhost {
+	reverse_proxy localhost:6006
+}
+
+docs.semaloop.localhost {
+	reverse_proxy localhost:4321
+}
+
+public.semaloop.localhost {
+	reverse_proxy localhost:3000
+}
+
+marketing-videos.semaloop.localhost {
+	reverse_proxy localhost:4000
+}
+
+mcp.semaloop.localhost {
+	reverse_proxy localhost:18196
+}
+
+internal-mcp.semaloop.localhost {
+	reverse_proxy localhost:18192
+}
+
+device-identity.semaloop.localhost {
+	reverse_proxy localhost:18193
+}
+
+pr-bot.semaloop.localhost {
+	reverse_proxy localhost:8789
+}

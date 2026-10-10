@@ -1,0 +1,86 @@
+#:schema https://fut.sh/schemas/config.json
+#:tombi toml-version = "v1.1.0"
+
+extensions = [
+  "~/Development/personal/fut-extensions/extensions/github",
+  "~/Development/personal/fut-extensions/extensions/linear",
+  "~/Development/personal/fut-extensions/extensions/claude",
+]
+
+[ui]
+prefix = "ctrl-a"
+
+[ui.bindings]
+focus_next_notification = "."
+
+[ui.icons]
+preset = "nerd_font"
+
+# One Dark-ish palette to match the terminal background.
+[ui.styles]
+session = { foreground = "#61afef", add_modifiers = ["bold"] }
+muted = { foreground = "#848b98" }
+selected = { background = "#3e4452", add_modifiers = ["bold"] }
+current = { foreground = "#e5c07b" }
+activity = { foreground = "#56b6c2" }
+attention = { foreground = "#e5c07b" }
+error = { foreground = "#e06c75" }
+added = { foreground = "#98c379" }
+deleted = { foreground = "#e06c75" }
+divider = { foreground = "#3e4452" }
+tab = { background = "#3e4452" }
+
+# fut's default tab format, with a grey background on every tab. The active
+# tab's `current` style still draws over it as the yellow pill.
+[ui.tab_bar.item]
+segments = [
+  { text = " ", style = "tab" },
+  { token = "tab.index", style = "tab" },
+  { token = "tab.name", style = "tab", prefix = " " },
+  { token = "tab.closing", style = "tab", prefix = " " },
+  { token = "tab.activity", style = "tab", prefix = " " },
+  { text = " ", style = "tab" },
+]
+
+[ui.sidebar.right]
+width = 40
+display = "expanded"
+visibility = "visible"
+components = [
+  { component = "agents", scope = "session", size = "fill" },
+]
+
+[ui.sidebar.left]
+width = 40
+visibility = "visible"
+components = [
+  {
+    component = "workspaces",
+    size = "fill",
+    header = [],
+    footer = [],
+    row = {
+      left = [
+        { text = " " },
+      ],
+      body = [
+        { token = "workspace.name", max_width = 22 },
+      ],
+      right = [
+        { token = "workspace.extension.linear.status_icon", prefix = " ", suffix = " " },
+        { token = "workspace.extension.linear.issue", style = "muted", suffix = " " },
+        { token = "workspace.activity" },
+        { text = " " },
+      ],
+      detail = [
+        { text = " " },
+        { token = "workspace.extension.github.pr", style = "muted", suffix = " " },
+        { token = "workspace.extension.github.state", suffix = " " },
+        { token = "workspace.extension.github.checks", suffix = "  " },
+        { token = "workspace.git_added", style = "added", suffix = " " },
+        { token = "workspace.git_deleted", style = "deleted" },
+      ]
+    }
+  },
+]
+

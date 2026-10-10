@@ -1,0 +1,14 @@
+# Replaces [ui.sidebar.right] when `fut-agents` launches the mikker/fut#17
+# build. fut 0.34 rejects agent `row`s, so this stays out of config.toml.
+[ui.sidebar.right]
+width = 40
+display = "expanded"
+visibility = "visible"
+components = [
+  { component = "agents", scope = "session", size = "fill", row = {
+      left = [{ text = " " }],
+      body = [{ token = "agent.source" }],
+      right = [{ token = "pane.extension.claude.context", style = "muted" }, { token = "agent.activity", prefix = " " }],
+      detail = [{ text = " " }, { token = "pane.extension.claude.model", style = "muted", suffix = " · " }, { token = "agent.status" }, { token = "agent.location", style = "muted", prefix = " · " }],
+  } },
+]

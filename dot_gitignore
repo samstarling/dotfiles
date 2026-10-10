@@ -1,4 +1,9 @@
 .playwright-mcp
+data/.data/
+data/dlt/.dlt/
+**/__pycache__
+/Users/sam/Development/semaloop/Semaloop/.config
+**/paseo.json
 .mcp.json
 .tool-versions
 .DS_Store
@@ -9,7 +14,8 @@ mise.local.toml
 *.tfstate
 *.tfstate.*
 .terraform
-.claude
 data/**/.evidence
 .build
 Package.resolved
+**/.claude/settings.local.json
+**/.claude/worktrees

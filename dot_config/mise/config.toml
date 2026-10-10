@@ -1,6 +1,5 @@
 [tools]
 bat = "latest"
-btop = "latest"
 bun = "latest"
 chezmoi = "latest"
 delta = "latest"
@@ -10,9 +9,15 @@ fzf = "latest"
 gh = "latest"
 helix = "latest"
 jq = "latest"
+kubectx = "latest"
 node = "24.14.1"
 "npm:appium" = "3.2.2"
 "npm:go-ios" = "1.0.188"
 "pipx:harview" = "latest"
 ripgrep = "latest"
+turbo = "latest"
 zoxide = "latest"
+
+
+[settings]
+trusted_config_paths = ["~/Development/semaloop", "~/conductor/workspaces/Semaloop", "~/.herdr/worktrees"]

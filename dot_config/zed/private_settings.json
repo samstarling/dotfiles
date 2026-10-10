@@ -1,9 +1,50 @@
 {
-  "prettier": {
-    "parser": "",
+  "cursor_shape": "bar",
+  "cursor_animation": {
+    "enabled": true,
+  },
+  "markdown_preview": {
+    "font_size": 16.0,
+  },
+  "agent_buffer_font_size": 13.0,
+  "agent_ui_font_size": 15.0,
+  "active_pane_modifiers": {
+    "inactive_opacity": 0.6,
+  },
+  "bottom_dock_layout": "contained",
+  "tabs": {
+    "show_diagnostics": "all",
+  },
+  "tab_bar": {
+    "show": true,
+  },
+  "title_bar": {
+    "show_user_picture": true,
+    "show_user_menu": true,
+    "show_branch_status_icon": false,
+  },
+  "status_bar": {
+    "show_active_file": false,
+  },
+  "zoomed_padding": true,
+  "centered_layout": {
+    "right_padding": 0.4,
+    "left_padding": 0.4,
   },
   "cli_default_open_behavior": "new_window",
   "project_panel": {
+    "folder_indicator": "chevron",
+    "hide_gitignore": false,
+    "hide_root": false,
+    "indent_guides": {
+      "show": "always",
+    },
+    "git_status_indicator": true,
+    "diagnostic_badges": false,
+    "indent_size": 23.0,
+    "entry_spacing": "standard",
+    "file_icons": true,
+    "default_width": 300.0,
     "dock": "left",
   },
   "outline_panel": {
@@ -15,7 +56,11 @@
   "git_panel": {
     "dock": "left",
   },
-  "icon_theme": "Catppuccin Latte",
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Latte",
+  },
   "file_finder": {
     "include_ignored": "all",
   },
@@ -26,11 +71,6 @@
   },
   "agent": {
     "dock": "right",
-    "default_model": {
-      "provider": "anthropic",
-      "model": "claude-sonnet-4-6-latest",
-      "enable_thinking": false,
-    },
     "favorite_models": [],
     "model_parameters": [],
   },
@@ -39,16 +79,17 @@
   "buffer_font_weight": 400.0,
   "buffer_font_family": "Iosevka",
   "terminal": {
+    "show_count_badge": false,
     "shell": {
       "program": "/opt/homebrew/bin/fish",
     },
   },
   "ui_font_family": ".ZedSans",
-  "ui_font_size": 16,
+  "ui_font_size": 15,
   "buffer_font_size": 15,
   "theme": {
     "mode": "system",
-    "light": "One Light",
+    "light": "One Dark",
     "dark": "One Dark",
   },
   "show_wrap_guides": true,
@@ -56,7 +97,7 @@
   "languages": {
     "Markdown": {
       "preferred_line_length": 80,
-      "soft_wrap": "preferred_line_length",
+      "soft_wrap": "prefer_line",
     },
     "Python": {
       "code_actions_on_format": {
@@ -71,5 +112,18 @@
   },
   "file_types": {
     "HCL": ["alloy"],
+  },
+  "lsp": {
+    "vtsls": {
+      "initialization_options": {
+        "typescript": {
+          "tsserver": {
+            "experimental": {
+              "enableProjectDiagnostics": true,
+            },
+          },
+        },
+      },
+    },
   },
 }
