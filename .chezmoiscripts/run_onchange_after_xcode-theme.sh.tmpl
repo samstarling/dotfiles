@@ -1,0 +1,4 @@
+#!/bin/sh
+# Xcode theme hash: {{ include "private_Library/Developer/Xcode/UserData/FontAndColorThemes/Personal.xccolortheme.tmpl" | sha256sum }}
+set -e
+defaults write com.apple.dt.Xcode XCFontAndColorCurrentTheme -string "Personal.xccolortheme"
