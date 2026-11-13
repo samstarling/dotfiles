@@ -2,4 +2,4 @@
 # Caddyfile hash: {{ include "dot_config/caddy/Caddyfile" | sha256sum }}
 set -e
 ln -sf "$HOME/.config/caddy/Caddyfile" /opt/homebrew/etc/Caddyfile
-brew services restart caddy
+/opt/homebrew/bin/brew services restart caddy
