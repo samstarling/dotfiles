@@ -65,9 +65,9 @@ Provides `fish`, `gnupg`, `pinentry-mac`.
 
 ### 7. Install Nix
 
-[nix-darwin] sets the Dock and system settings from `nix/configuration.nix`.
-It needs Nix, which `chezmoi apply` then uses to apply those settings (it
-asks for your password).
+[nix-darwin] sets the Dock and system settings from `nix/configuration.nix`,
+and it needs Nix. The installer asks for your password and for a yes to its
+plan. Ignore its suggestion to use the macOS package instead.
 
 ```sh
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
@@ -84,11 +84,14 @@ Then, start a fresh terminal to switch to `fish`.
 
 ### 9. Apply chezmoi
 
+The first apply sets up nix-darwin: it asks for your password, downloads
+about 4 GB and takes a few minutes.
+
 ```sh
 chezmoi apply
 ```
 
-### 9. Install remaining mise tools
+### 10. Install remaining mise tools
 
 The applied `~/.config/mise/config.toml` pins everything else (bat, btop,
 delta, eza, fzf, helix, jq, ripgrep, zoxide, fd, etc).
@@ -126,6 +129,19 @@ Then copy the public key and [add it to GitHub](https://github.com/settings/keys
 
 ```sh
 gpg --armor --export KEY_ID | pbcopy
+```
+
+## Dock and system settings
+
+Edit `nix/configuration.nix`, then run `chezmoi apply`. Deleting a line
+doesn't undo a setting that has already been applied: set the opposite value
+instead.
+
+To remove nix-darwin and Nix:
+
+```sh
+sudo /run/current-system/sw/bin/darwin-uninstaller
+/nix/nix-installer uninstall
 ```
 
 [mise]: https://mise.jdx.dev
