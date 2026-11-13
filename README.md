@@ -1,6 +1,6 @@
 # dotfiles
 
-Configuration for my computer, managed by [mise], [chezmoi] and [homebrew].
+Configuration for my computer, managed by [mise], [chezmoi], [homebrew] and [nix-darwin].
 
 ## Fresh machine setup
 
@@ -52,7 +52,7 @@ chezmoi init samstarling --ssh
 ```
 
 When prompted for a GPG signing key, enter anything — we'll regenerate it
-in step 10.
+in step 11.
 
 ### 6. Install homebrew and the Brewfile
 
@@ -63,7 +63,17 @@ Provides `fish`, `gnupg`, `pinentry-mac`.
 /opt/homebrew/bin/brew bundle --file ~/.local/share/chezmoi/Brewfile
 ```
 
-### 7. Set fish as the default shell
+### 7. Install Nix
+
+[nix-darwin] sets the Dock and system settings from `nix/configuration.nix`.
+It needs Nix, which `chezmoi apply` then uses to apply those settings (it
+asks for your password).
+
+```sh
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+```
+
+### 8. Set fish as the default shell
 
 ```sh
 echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
@@ -72,13 +82,13 @@ chsh -s /opt/homebrew/bin/fish
 
 Then, start a fresh terminal to switch to `fish`.
 
-### 8. Apply chezmoi
+### 9. Apply chezmoi
 
 ```sh
 chezmoi apply
 ```
 
-### 8. Install remaining mise tools
+### 9. Install remaining mise tools
 
 The applied `~/.config/mise/config.toml` pins everything else (bat, btop,
 delta, eza, fzf, helix, jq, ripgrep, zoxide, fd, etc).
@@ -87,7 +97,7 @@ delta, eza, fzf, helix, jq, ripgrep, zoxide, fd, etc).
 mise install
 ```
 
-### 10. Generate a GPG signing key
+### 11. Generate a GPG signing key
 
 ECC / ED25519:
 
@@ -121,3 +131,4 @@ gpg --armor --export KEY_ID | pbcopy
 [mise]: https://mise.jdx.dev
 [chezmoi]: https://www.chezmoi.io/
 [homebrew]: https://brew.sh
+[nix-darwin]: https://github.com/nix-darwin/nix-darwin

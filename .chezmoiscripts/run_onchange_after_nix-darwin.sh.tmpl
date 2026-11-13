@@ -1,0 +1,19 @@
+#!/bin/sh
+# nix-darwin config hash: {{ include "nix/flake.nix" | sha256sum }} {{ include "nix/flake.lock" | sha256sum }} {{ include "nix/configuration.nix" | sha256sum }}
+set -e
+dir="{{ .chezmoi.sourceDir }}/nix"
+flake="$dir#{{ .chezmoi.username }}"
+nix=/nix/var/nix/profiles/default/bin/nix
+rebuild=/run/current-system/sw/bin/darwin-rebuild
+
+if [ ! -x "$nix" ]; then
+    echo "Nix is not installed: see the README's Install Nix step." >&2
+    exit 1
+fi
+
+if [ -x "$rebuild" ]; then
+    sudo "$rebuild" switch --flake "$flake"
+else
+    # darwin-rebuild only exists after the first apply, so fetch the version flake.lock pins.
+    sudo "$nix" run --inputs-from "$dir" nix-darwin#darwin-rebuild -- switch --flake "$flake"
+fi
