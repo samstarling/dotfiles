@@ -4,3 +4,4 @@ brew "pinentry-mac"
 brew "caddy"
 
 cask "zed"
+cask "ghostty"
