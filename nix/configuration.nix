@@ -12,12 +12,13 @@
 
   system.defaults.dock = {
     persistent-apps = [
-      "/System/Applications/Messages.app"
       # /Applications/Safari.app is a symlink, which the Dock badges as an alias.
       "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"
       "/Applications/Zed.app"
-      "/System/Applications/System Settings.app"
+      "/Applications/Ghostty.app"
     ];
+    # No folders (such as Downloads) beside the Bin.
+    persistent-others = [ ];
     autohide = false;
   };
 
