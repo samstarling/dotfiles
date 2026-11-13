@@ -89,7 +89,7 @@ about 4 GB and takes a few minutes. Fish has no mise on its path until this
 apply installs `config.fish`, so call it by its full path.
 
 ```sh
-~/.local/bin/mise exec -- chezmoi apply
+~/.local/bin/mise exec chezmoi -- chezmoi apply
 ```
 
 ### 10. Install remaining mise tools
