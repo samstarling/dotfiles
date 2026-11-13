@@ -85,10 +85,11 @@ Then, start a fresh terminal to switch to `fish`.
 ### 9. Apply chezmoi
 
 The first apply sets up nix-darwin: it asks for your password, downloads
-about 4 GB and takes a few minutes.
+about 4 GB and takes a few minutes. Fish has no mise on its path until this
+apply installs `config.fish`, so call it by its full path.
 
 ```sh
-chezmoi apply
+~/.local/bin/mise exec -- chezmoi apply
 ```
 
 ### 10. Install remaining mise tools
