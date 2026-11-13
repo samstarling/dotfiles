@@ -15,5 +15,5 @@ if [ -x "$rebuild" ]; then
     sudo "$rebuild" switch --flake "$flake"
 else
     # darwin-rebuild only exists after the first apply, so fetch the version flake.lock pins.
-    sudo "$nix" run --inputs-from "$dir" nix-darwin#darwin-rebuild -- switch --flake "$flake"
+    sudo -H "$nix" run --inputs-from "$dir" nix-darwin#darwin-rebuild -- switch --flake "$flake"
 fi
