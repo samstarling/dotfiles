@@ -27,6 +27,10 @@
     StageManagerHideWidgets = true;
   };
 
+  # The system-wide switch and the menu bar clock's own one.
+  system.defaults.NSGlobalDomain.AppleICUForce24HourTime = true;
+  system.defaults.menuExtraClock.Show24Hour = true;
+
   system.defaults.finder = {
     AppleShowAllExtensions = true;
     ShowPathbar = true;
