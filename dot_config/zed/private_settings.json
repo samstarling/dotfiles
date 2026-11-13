@@ -97,7 +97,7 @@
   "languages": {
     "Markdown": {
       "preferred_line_length": 80,
-      "soft_wrap": "prefer_line",
+      "soft_wrap": "preferred_line_length",
     },
     "Python": {
       "code_actions_on_format": {
