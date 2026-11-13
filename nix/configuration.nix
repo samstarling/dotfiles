@@ -31,6 +31,9 @@
   system.defaults.NSGlobalDomain.AppleICUForce24HourTime = true;
   system.defaults.menuExtraClock.Show24Hour = true;
 
+  # The menu bar clock only picks up a new setting when its process restarts.
+  system.activationScripts.postActivation.text = "killall ControlCenter 2>/dev/null || true";
+
   system.defaults.finder = {
     AppleShowAllExtensions = true;
     ShowPathbar = true;
