@@ -16,7 +16,6 @@ kubectx = "latest"
 node = "24.14.1"
 "npm:appium" = "3.2.2"
 "npm:go-ios" = "1.0.188"
-"pipx:harview" = "latest"
 ripgrep = "latest"
 rust = "latest"
 turbo = "latest"
@@ -24,4 +23,8 @@ zoxide = "latest"
 
 
 [settings]
-trusted_config_paths = ["~/Development/semaloop", "~/conductor/workspaces/Semaloop", "~/.herdr/worktrees"]
+trusted_config_paths = [
+    "~/Development/semaloop",
+    "~/conductor/workspaces/Semaloop",
+    "~/.herdr/worktrees",
+]
