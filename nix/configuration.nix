@@ -13,11 +13,17 @@
   system.defaults.dock = {
     persistent-apps = [
       "/System/Applications/Messages.app"
-      "/Applications/Safari.app"
+      # /Applications/Safari.app is a symlink, which the Dock badges as an alias.
+      "/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app"
       "/Applications/Zed.app"
       "/System/Applications/System Settings.app"
     ];
     autohide = true;
+  };
+
+  system.defaults.WindowManager = {
+    StandardHideWidgets = true;
+    StageManagerHideWidgets = true;
   };
 
   system.defaults.finder = {
