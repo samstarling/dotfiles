@@ -60,10 +60,19 @@ Provides `fish`, `gnupg`, `pinentry-mac`.
 
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew bundle --file ~/.local/share/chezmoi/Brewfile
+/opt/homebrew/bin/brew bundle --file ~/.local/share/chezmoi/Brewfile
 ```
 
-### 7. Apply chezmoi
+### 7. Set fish as the default shell
+
+```sh
+echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
+chsh -s /opt/homebrew/bin/fish
+```
+
+Then, start a fresh terminal to switch to `fish`.
+
+### 8. Apply chezmoi
 
 ```sh
 chezmoi apply
@@ -76,13 +85,6 @@ delta, eza, fzf, helix, jq, ripgrep, zoxide, fd, etc).
 
 ```sh
 mise install
-```
-
-### 9. Set fish as the default shell
-
-```sh
-echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
-chsh -s /opt/homebrew/bin/fish
 ```
 
 ### 10. Generate a GPG signing key
