@@ -1,10 +1,8 @@
 #!/bin/sh
 # nix-darwin config hash: {{ include "nix/flake.nix" | sha256sum }} {{ include "nix/flake.lock" | sha256sum }} {{ include "nix/configuration.nix" | sha256sum }}
 set -e
-# The config reads the user name from DOTFILES_USER, which is why Nix needs --impure.
 dir="{{ .chezmoi.sourceDir }}/nix"
-flake="$dir#default"
-user="{{ .chezmoi.username }}"
+flake="$dir#{{ .chezmoi.username }}"
 nix=/nix/var/nix/profiles/default/bin/nix
 rebuild=/run/current-system/sw/bin/darwin-rebuild
 
@@ -14,8 +12,8 @@ if [ ! -x "$nix" ]; then
 fi
 
 if [ -x "$rebuild" ]; then
-    sudo env DOTFILES_USER="$user" "$rebuild" switch --impure --flake "$flake"
+    sudo "$rebuild" switch --flake "$flake"
 else
     # darwin-rebuild only exists after the first apply, so fetch the version flake.lock pins.
-    sudo -H env DOTFILES_USER="$user" "$nix" run --inputs-from "$dir" nix-darwin#darwin-rebuild -- switch --impure --flake "$flake"
+    sudo -H "$nix" run --inputs-from "$dir" nix-darwin#darwin-rebuild -- switch --flake "$flake"
 fi

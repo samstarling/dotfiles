@@ -1,12 +1,5 @@
 { ... }:
-let
-  user = builtins.getEnv "DOTFILES_USER";
-in
 {
-  # User-level settings are written for this user. The chezmoi script passes it in.
-  system.primaryUser =
-    if user == "" then throw "DOTFILES_USER is not set: run `chezmoi apply` rather than darwin-rebuild." else user;
-
   nixpkgs.hostPlatform = "aarch64-darwin";
   system.stateVersion = 6;
 
