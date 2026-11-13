@@ -18,7 +18,7 @@
       "/Applications/Zed.app"
       "/System/Applications/System Settings.app"
     ];
-    autohide = true;
+    autohide = false;
   };
 
   system.defaults.WindowManager = {
